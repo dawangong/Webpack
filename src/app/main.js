@@ -1,5 +1,5 @@
 import components from '../components/index';
 
-class app {
+export default class app {
 
 }

@@ -1,3 +1,3 @@
-function a() {
+export default function a() {
 
 }

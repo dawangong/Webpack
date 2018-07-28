@@ -1,4 +1,4 @@
-// import css from './index.less'
+// import less from './index.less';
 
 export default class components {
 

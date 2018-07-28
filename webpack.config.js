@@ -1,3 +1,4 @@
+let webpack = require('webpack');
 let path = require('path');
 let htmlWebpackPlugin = require('html-webpack-plugin');
 let cleanWebpackPlugin = require('clean-webpack-plugin');
@@ -17,6 +18,24 @@ module.exports = {
         filename: 'src/[name].[hash].min.js',
         publicPath: ''
     },
+    // loader: [],
+    // preLoaders: [],
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: path.resolve(__dirname, 'node_modules'),
+                include: path.resolve(__dirname, 'src')
+            },
+            {
+                test: /.css$/,
+                loaders: ['style-loader', 'css-loader', 'postcss-loader'],
+                exclude: path.resolve(__dirname, 'node_modules'),
+                include: path.resolve(__dirname, 'src')
+            }
+        ]
+    },
     plugins: [
         new htmlWebpackPlugin({
             template: './src/index.html',
@@ -28,6 +47,14 @@ module.exports = {
                 // collapseWhitespace: true
             }
         }),
-        new cleanWebpackPlugin(['dist'])
-    ]
+        new cleanWebpackPlugin(['dist']),
+        new webpack.LoaderOptionsPlugin({
+            options:{
+                postcss: [
+                    require('autoprefixer')//调用autoprefixer插件
+                ],
+            }
+        })
+    ],
+    mode: 'none'
 };
