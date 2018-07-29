@@ -3,28 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="src/main.d3ec7200d93604b07694.min.js"></script>
+    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry%>"></script>
 </head>
 <body>
-    
-    
-    
-    
-    
-    <script src="src/other.d3ec7200d93604b07694.min.js"></script>
-    
-    
-    
-    <script src="src/a.d3ec7200d93604b07694.min.js"></script>
-    
-    
-    
-    <script src="src/b.d3ec7200d93604b07694.min.js"></script>
-    
-    
-    
-    <script src="src/c.d3ec7200d93604b07694.min.js"></script>
-    
-    
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <% if (chunk !== 'main') { %>
+    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+    <% } %>
+    <% } %>
 </body>
 </html>
