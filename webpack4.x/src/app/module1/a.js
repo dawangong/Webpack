@@ -1,4 +1,4 @@
-import './a.css';
+import './a.less';
 
 export default class {
 
