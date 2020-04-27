@@ -2,3 +2,6 @@
 /dist
 /package-lock.json
 /webpack4.x/node_modules
+webpack4.x/.idea/
+
+.idea/

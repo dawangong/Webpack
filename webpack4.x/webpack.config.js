@@ -26,7 +26,33 @@ module.exports = {
                         limit:10000
                     }
                 }]
-            }
+            },{
+            test: /\.js$/,
+            include: /src/,
+            use: [{
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  'env',
+                  'stage-2'
+                ],
+                plugins: [
+                  [
+                    'transform-runtime',
+                    {
+                      'polyfill': true,
+                      'regenerator': true
+                    }
+                  ],
+                  ['transform-decorators-legacy',
+                    {
+                      'legacy': true
+                    }
+                  ]
+                ]
+              }
+            }]
+          }
         ]
     },
     plugins: [
@@ -45,5 +71,5 @@ module.exports = {
         port: 9000,
         compress: true
     },
-    // mode: 'development'
+    mode: process.env
 };
