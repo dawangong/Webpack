@@ -71,7 +71,7 @@ module.exports = {
         include: path.resolve(__dirname, 'src')
       },
       {
-        test: /\.(jpg|jpeg|gif)$/,
+        test: /\.(jpg|jpeg|png|gif)$/,
         loader: 'url-loader',
         exclude: path.resolve(__dirname, 'node_modules'),
         include: path.resolve(__dirname, 'src'),
@@ -100,6 +100,7 @@ module.exports = {
         collapseWhitespace: true
       }
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new cleanWebpackPlugin(['dist']),
     // postcss.config postcss需要（此插件无效果）
     // new webpack.LoaderOptionsPlugin({
@@ -119,5 +120,21 @@ module.exports = {
   // inline-source-map base64形式 打入主js 定位错误到行列 本地推荐
   // cheap-inline-source-map base64形式 打入主js 定位错误到行 本地推荐 线上推荐
   // eval 最快 可能定位不准
-  devtool: NODE_ENV === 'development' ? 'inline-source-map' : 'cheap-inline-source-map'
+  devtool: NODE_ENV === 'development' ? 'inline-source-map' : 'cheap-inline-source-map',
+  devServer: {
+    open: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        // 跨域
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
+    port: 8000,
+    hot: true,
+    compress: true
+  }
 };
