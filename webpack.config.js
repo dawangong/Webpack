@@ -77,6 +77,12 @@ module.exports = {
           limit: 10000,
           name: 'src/images/[name].[hash].[ext]'
         }
+      },
+      {
+        test: /\.(svg|eot|ttf)$/,
+        loader: 'file-loader',
+        exclude: path.resolve(__dirname, 'node_modules'),
+        include: path.resolve(__dirname, 'src')
       }
     ]
   },
