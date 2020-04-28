@@ -1,15 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry%>"></script>
-</head>
-<body>
-    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    <% if (chunk !== 'main') { %>
-    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
-    <% } %>
-    <% } %>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head><body><script type="text/javascript" src="src/main.fccc7ffd50eaa09e43e6.min.js"></script></body></html>

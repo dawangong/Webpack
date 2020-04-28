@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry%>"></script>
+    <!--<script src="<%= htmlWebpackPlugin.files.chunks.main.entry%>"></script>-->
 </head>
 <body>
-    <!--注释-->
-    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    <% if (chunk !== 'main') { %>
-    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
-    <% } %>
-    <% } %>
+    <!--注释 html-loader 和 htmlWebpackPlugin 冲突 导致 ejs语法编译失效 -->
+    <!--<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>-->
+    <!--<% if (chunk !== 'main') { %>-->
+    <!--<script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>-->
+    <!--<% } %>-->
+    <!--<% } %>-->
 </body>
 </html>

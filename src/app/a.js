@@ -1,3 +1,3 @@
-export default function a() {
+import '../static/images/test.jpg'
 
-}
+console.log('a');
