@@ -56,13 +56,21 @@ module.exports = {
       ,
       {
         test: /\.less$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
+        loaders: ['style-loader', {
+          loader: 'css-loader',
+          options: {
+            // 支持css中互相import引用
+            importLoaders: 2,
+            // css module 化
+            // modules: true
+          }
+        }, 'less-loader', 'postcss-loader'],
         exclude: path.resolve(__dirname, 'node_modules'),
         include: path.resolve(__dirname, 'src')
       },
       {
         test: /\.(jpg|jpeg|gif)$/,
-        loaders: 'url-loader',
+        loader: 'url-loader',
         exclude: path.resolve(__dirname, 'node_modules'),
         include: path.resolve(__dirname, 'src'),
         options: {

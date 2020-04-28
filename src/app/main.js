@@ -1,4 +1,3 @@
-import components from '../components/index';
 import tpl from './tpl.html';
 import './a'
 import './b'
