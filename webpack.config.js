@@ -20,7 +20,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'src/[name].[hash].min.js',
-    publicPath: ''
+    // 给链接的资源加前缀/路径 一般cdn用 默认./
+    publicPath: './'
   },
   module: {
     rules: [
@@ -47,6 +48,7 @@ module.exports = {
       //     exclude: path.resolve(__dirname, 'node_modules'),
       //     include: path.resolve(__dirname, 'src')
       // },
+      // 模版支持 （模版语法和htmlWebpackPlugin ejs冲突）
       {
         test: /\.html$/,
         loaders: ['html-loader'],
@@ -87,6 +89,7 @@ module.exports = {
     ]
   },
   plugins: [
+    // 支持模版 （ejs和html-loader冲突）
     new htmlWebpackPlugin({
       template: './src/index.html',
       inject: true,
@@ -98,17 +101,23 @@ module.exports = {
       }
     }),
     new cleanWebpackPlugin(['dist']),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: function () {
-          return [
-            require("autoprefixer")({
-              browsers: ['ie>=8', '>1% in CN']
-            })
-          ]
-        }
-      }
-    })
+    // postcss.config postcss需要（此插件无效果）
+    // new webpack.LoaderOptionsPlugin({
+    //   options: {
+    //     postcss: function () {
+    //       return [
+    //         require("autoprefixer")({
+    //           browsers: ['ie>=8', '>1% in CN']
+    //         })
+    //       ]
+    //     }
+    //   }
+    // })
   ],
-  mode: NODE_ENV
+  mode: NODE_ENV,
+  // source-map 生成 .map文件  排错 定位错误到行列
+  // inline-source-map base64形式 打入主js 定位错误到行列 本地推荐
+  // cheap-inline-source-map base64形式 打入主js 定位错误到行 本地推荐 线上推荐
+  // eval 最快 可能定位不准
+  devtool: NODE_ENV === 'development' ? 'inline-source-map' : 'cheap-inline-source-map'
 };
