@@ -82,7 +82,7 @@ module.exports = {
         collapseWhitespace: true
       }
     }),
-    new cleanWebpackPlugin(['../dist'], {
+    new cleanWebpackPlugin(['dist'], {
       // 指定root
       root: path.resolve(__dirname, '../')
     })
