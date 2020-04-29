@@ -25,7 +25,7 @@ module.exports = {
   },
   module: {
     rules: [
-      // babel-polyfill 兼容低版本浏览器不支持的api（配置后 自动引入） babel只转译语法 不转api
+      // babel-polyfill 兼容低版本浏览器不支持的api（4.0后 只安装 会自动引入） babel只转译语法 不转api
       {
         test: /\.js$/,
         loader: 'babel-loader',
