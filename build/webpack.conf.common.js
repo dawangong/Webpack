@@ -108,7 +108,8 @@ module.exports = {
     splitChunks: {
       chunks: "all"
     }
-  }
+  },
+  performance: false // 性能提示
 };
 
 // clear plugin && output.path && loader 需要跟着目录重置位置
