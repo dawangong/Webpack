@@ -21,7 +21,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'src/[name].[hash].min.js',
     // 默认值 ./
-    publicPath: '/'
+    publicPath: './'
   },
   module: {
     rules: [
@@ -122,7 +122,8 @@ module.exports = {
   // eval 最快 可能定位不准
   devtool: NODE_ENV === 'development' ? 'inline-source-map' : 'cheap-inline-source-map',
   devServer: {
-    contentBase: './dist',
+    publicPath: '/',
+    // contentBase: './dist',
     open: true,
     proxy: {
       '/api': {
