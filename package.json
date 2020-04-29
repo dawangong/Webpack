@@ -9,9 +9,9 @@
     "*jpg"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev webpack-dev-server --config webpack.conf.dev.js",
-    "test": "cross-env NODE_ENV=test webpack-dev-server --config webpack.conf.dev.js",
-    "build": "cross-env NODE_ENV=prod webpack-cli --config webpack.conf.prod.js --watch"
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --config build/webpack.conf.dev.js",
+    "test": "cross-env NODE_ENV=test webpack-dev-server --config build/webpack.conf.dev.js",
+    "build": "cross-env NODE_ENV=prod webpack-cli --config build/webpack.conf.prod.js --watch"
   },
   "author": "",
   "license": "ISC",

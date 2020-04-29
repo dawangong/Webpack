@@ -16,7 +16,7 @@ module.exports = {
   entry: './src/index.js',
   //打包后的目录
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: 'src/[name].[hash].min.js',
     // 默认值 ./
     publicPath: './'
@@ -27,15 +27,15 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: path.resolve(__dirname, 'node_modules'),
-        include: path.resolve(__dirname, 'src')
+        exclude: path.resolve(__dirname, '../node_modules'),
+        include: path.resolve(__dirname, '../src')
       },
       // 模版支持 （模版语法和htmlWebpackPlugin ejs冲突）
       {
         test: /\.html$/,
         loaders: ['html-loader'],
-        exclude: path.resolve(__dirname, 'node_modules'),
-        include: path.resolve(__dirname, 'src')
+        exclude: path.resolve(__dirname, '../node_modules'),
+        include: path.resolve(__dirname, '../src')
       }
       ,
       {
@@ -49,14 +49,14 @@ module.exports = {
             // modules: true
           }
         }, 'less-loader', 'postcss-loader'],
-        exclude: path.resolve(__dirname, 'node_modules'),
-        include: path.resolve(__dirname, 'src')
+        exclude: path.resolve(__dirname, '../node_modules'),
+        include: path.resolve(__dirname, '../src')
       },
       {
         test: /\.(jpg|jpeg|png|gif)$/,
         loader: 'url-loader',
-        exclude: path.resolve(__dirname, 'node_modules'),
-        include: path.resolve(__dirname, 'src'),
+        exclude: path.resolve(__dirname, '../node_modules'),
+        include: path.resolve(__dirname, '../src'),
         options: {
           limit: 10000,
           name: 'src/images/[name].[hash].[ext]'
@@ -65,8 +65,8 @@ module.exports = {
       {
         test: /\.(svg|eot|ttf)$/,
         loader: 'file-loader',
-        exclude: path.resolve(__dirname, 'node_modules'),
-        include: path.resolve(__dirname, 'src')
+        exclude: path.resolve(__dirname, '../node_modules'),
+        include: path.resolve(__dirname, '../src')
       }
     ]
   },
@@ -82,7 +82,10 @@ module.exports = {
         collapseWhitespace: true
       }
     }),
-    new cleanWebpackPlugin(['dist'])
+    new cleanWebpackPlugin(['../dist'], {
+      // 指定root
+      root: path.resolve(__dirname, '../')
+    })
   ],
   mode: env[NODE_ENV],
   // source-map 生成 .map文件  排错 定位错误到行列
@@ -92,3 +95,4 @@ module.exports = {
   devtool: env[NODE_ENV] === 'prod' ? 'cheap-inline-source-map' : 'inline-source-map'
 };
 
+// clear plugin && output.path && loader 需要跟着目录重置位置
