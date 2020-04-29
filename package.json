@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "sideEffects": ["*less", "*json", "*jpg"],
+  "sideEffects": [
+    "*less",
+    "*json",
+    "*jpg"
+  ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev webpack-dev-server",
-    "test": "cross-env NODE_ENV=test webpack-dev-server",
-    "build": "cross-env NODE_ENV=prod webpack-cli --watch"
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --config webpack.conf.dev.js",
+    "test": "cross-env NODE_ENV=test webpack-dev-server --config webpack.conf.dev.js",
+    "build": "cross-env NODE_ENV=prod webpack-cli --config webpack.conf.prod.js --watch"
   },
   "author": "",
   "license": "ISC",
@@ -35,7 +39,8 @@
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {}
 }
