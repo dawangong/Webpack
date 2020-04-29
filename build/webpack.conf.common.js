@@ -100,7 +100,7 @@ module.exports = {
     // 打开tree shaking(摇树优化) 只支持es6（静态引入）commonjs （module,动态引入）
     // 非导出模块 会被忽略 故在package中设定 sideEffects 防止被忽略
     usedExports: true,
-    // 代码分割 1.splitChunks 2.dynamic-import-webpack 动态引入
+    // 代码分割 1.splitChunks 2.syntax-dynamic-import 动态引入
     // 依赖的类库 浏览器进行缓存 （新代码发布时优化提高加载速度）
     splitChunks: {
       chunks: "all"

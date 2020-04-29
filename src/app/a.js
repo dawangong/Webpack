@@ -4,6 +4,8 @@ import './a.less'
 import data from './data.json'
 import _ from 'lodash';
 
+// import (/* webpackChunkName:"lodash" */ 'lodash');
+
 create('img', 'img', test);
 
 console.log(data , 'json');
