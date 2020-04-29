@@ -20,8 +20,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'src/[name].[hash].min.js',
-    // 给链接的资源加前缀/路径 一般cdn用 默认./
-    publicPath: './'
+    // 默认值 ./
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -122,6 +122,7 @@ module.exports = {
   // eval 最快 可能定位不准
   devtool: NODE_ENV === 'development' ? 'inline-source-map' : 'cheap-inline-source-map',
   devServer: {
+    contentBase: './dist',
     open: true,
     proxy: {
       '/api': {
@@ -133,6 +134,7 @@ module.exports = {
         }
       }
     },
+    host: 'localhost',
     port: 8000,
     hot: true,
     compress: true
