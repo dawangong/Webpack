@@ -13,7 +13,9 @@ const env = {
 
 module.exports = {
   //打包入口文件
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js'
+  },
   //打包后的目录
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -92,7 +94,18 @@ module.exports = {
   // inline-source-map base64形式 打入主js 定位错误到行列 本地推荐
   // cheap-inline-source-map base64形式 打入主js 定位错误到行 本地推荐 线上推荐
   // eval 最快 可能定位不准
-  devtool: env[NODE_ENV] === 'prod' ? 'cheap-inline-source-map' : 'inline-source-map'
+  devtool: env[NODE_ENV] === 'prod' ? 'cheap-inline-source-map' : 'inline-source-map',
+  // mode production 无需写optimization
+  optimization: {
+    // 打开tree shaking(摇树优化) 只支持es6（静态引入）commonjs （module,动态引入）
+    // 非导出模块 会被忽略 故在package中设定 sideEffects 防止被忽略
+    usedExports: true,
+    // 代码分割 1.splitChunks 2.dynamic-import-webpack 动态引入
+    // 依赖的类库 浏览器进行缓存 （新代码发布时优化提高加载速度）
+    splitChunks: {
+      chunks: "all"
+    }
+  }
 };
 
 // clear plugin && output.path && loader 需要跟着目录重置位置
