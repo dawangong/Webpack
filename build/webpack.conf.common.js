@@ -21,6 +21,7 @@ module.exports = {
   //打包后的目录
   output: {
     path: path.resolve(__dirname, '../dist'),
+    // contenthash 改变hash才会变
     filename: 'src/[name].[contenthash].min.js',
     // 默认值 ./
     publicPath: './'
