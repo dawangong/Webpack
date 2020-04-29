@@ -42,6 +42,7 @@ module.exports = {
       //         formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
       //     }
       // },
+      // babel-polyfill 兼容低版本浏览器不支持的api babel只转译语法 不转api
       {
         test: /\.js$/,
         loader: 'babel-loader',
