@@ -6,6 +6,12 @@ const { NODE_ENV } = process.env;
 
 console.log(NODE_ENV, '环境');
 
+const env = {
+  dev: 'development',
+  test: 'development',
+  prod: 'production'
+};
+
 module.exports = {
   //打包入口文件
   // entry: {
@@ -115,7 +121,7 @@ module.exports = {
     //   }
     // })
   ],
-  mode: NODE_ENV,
+  mode: env[NODE_ENV],
   // source-map 生成 .map文件  排错 定位错误到行列
   // inline-source-map base64形式 打入主js 定位错误到行列 本地推荐
   // cheap-inline-source-map base64形式 打入主js 定位错误到行 本地推荐 线上推荐
