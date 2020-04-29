@@ -1,6 +1,8 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const { NODE_ENV } = process.env;
 
 console.log(NODE_ENV, '环境');
@@ -42,6 +44,7 @@ module.exports = {
       ,
       {
         test: /\.less$/,
+        // 生产环境使用MiniCssExtractPlugin.loader
         loaders: ['style-loader', {
           loader: 'css-loader',
           options: {
