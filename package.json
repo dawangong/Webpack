@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --config build/webpack.conf.dev.js",
     "test": "cross-env NODE_ENV=test webpack-dev-server --config build/webpack.conf.dev.js",
-    "build": "cross-env NODE_ENV=prod webpack-cli --config build/webpack.conf.prod.js --watch"
+    "build": "npm_config_report=true cross-env NODE_ENV=prod webpack --config build/webpack.conf.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -40,6 +40,7 @@
     "style-loader": "^0.21.0",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "webpack-merge": "^4.2.2"
