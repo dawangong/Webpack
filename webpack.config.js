@@ -42,7 +42,7 @@ module.exports = {
       //         formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
       //     }
       // },
-      // babel-polyfill 兼容低版本浏览器不支持的api babel只转译语法 不转api
+      // babel-polyfill 兼容低版本浏览器不支持的api（配置后 自动引入） babel只转译语法 不转api
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -127,7 +127,7 @@ module.exports = {
   // inline-source-map base64形式 打入主js 定位错误到行列 本地推荐
   // cheap-inline-source-map base64形式 打入主js 定位错误到行 本地推荐 线上推荐
   // eval 最快 可能定位不准
-  devtool: NODE_ENV === 'development' ? 'inline-source-map' : 'cheap-inline-source-map',
+  devtool: env[NODE_ENV] === 'prod' ? 'cheap-inline-source-map' : 'inline-source-map',
   devServer: {
     publicPath: '/',
     // contentBase: './dist',
@@ -146,5 +146,11 @@ module.exports = {
     port: 8000,
     hot: true,
     compress: true
-  }
+  },
+  // mode production 无需写optimization
+  // optimization: {
+  //   // 打开tree shaking(摇树优化) 只支持es6（静态引入）commonjs （modules,动态引入）
+  //   usedExports: true
+  //   // 非导出模块 会被忽略 故在package中设定 sideEffects 防止被忽略
+  // }
 };

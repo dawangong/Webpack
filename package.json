@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "sideEffects": ["*less", "*json", "*jpg"],
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server",
     "test": "cross-env NODE_ENV=test webpack-dev-server",
