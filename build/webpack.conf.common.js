@@ -21,8 +21,8 @@ module.exports = {
   //打包后的目录
   output: {
     path: path.resolve(__dirname, '../dist'),
-    // contenthash 改变hash才会变
-    filename: 'src/[name].[contenthash].min.js',
+    // hash 改变hash才会变
+    filename: 'src/[name].[hash].min.js',
     // 默认值 ./
     publicPath: './'
   },
@@ -65,7 +65,7 @@ module.exports = {
         include: path.resolve(__dirname, '../src'),
         options: {
           limit: 10000,
-          name: 'src/images/[name].[contenthash].[ext]'
+          name: 'src/images/[name].[hash].[ext]'
         }
       },
       {
