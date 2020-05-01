@@ -97,7 +97,11 @@ module.exports = {
         removeComments: true,
         // 删除空格
         collapseWhitespace: true
-      }
+      },
+      // 输出模版名字
+      // filename: "index.html",
+      // 控制引入的js
+      // chunks: ['']
     }),
     new cleanWebpackPlugin(['dist'], {
       // 指定root

@@ -14,8 +14,9 @@ module.exports = {
     library: "[name]",
   },
   plugins: [
-    // 生成第三方库映射文件
+    // 生成第三方库映射文件vendors.manifest.json
     new webpack.DllPlugin({
+      // 生成的库名 同 暴露的vendors变量名
       name: "[name]",
       path: path.resolve(__dirname, '../dll/[name].manifest.json')
     })
