@@ -27,6 +27,16 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        enforce: "pre",
+        loader: 'eslint-loader',
+        options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
+          formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+        },
+        exclude: path.resolve(__dirname, '../node_modules'),
+        include: path.resolve(__dirname, '../src')
+      },
       // babel-polyfill 兼容低版本浏览器不支持的api（4.0后 只安装 会自动引入） babel只转译语法 不转api
       {
         test: /\.js$/,
