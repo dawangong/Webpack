@@ -32,7 +32,8 @@ module.exports = {
         enforce: "pre",
         loader: 'eslint-loader',
         options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
-          formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+          formatter: require('eslint-friendly-formatter'), // 指定错误报告的格式规范
+          // fix: true // 自动修复简单问题
         },
         exclude: path.resolve(__dirname, '../node_modules'),
         include: path.resolve(__dirname, '../src')
