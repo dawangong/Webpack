@@ -88,7 +88,7 @@ module.exports = {
   plugins: [
     // 支持模版 （ejs和html-loader冲突）
     new htmlWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(__dirname, '../src/index.html'),
       inject: true,
       minify: {
         // 删除注释
@@ -119,7 +119,16 @@ module.exports = {
       chunks: "all"
     }
   },
-  performance: false // 性能提示
+  performance: false, // 性能提示
+  resolve: {
+    // 默认引入目录下的文件类型
+    extensions: ['.js'],
+    // 默认引入目录下的文件名
+    mainFiles: ['index', 'main'],
+    alias: {
+      '@': path.resolve(__dirname, '../src')
+    }
+  }
 };
 
 // clear plugin && output.path && loader 需要跟着目录重置位置
