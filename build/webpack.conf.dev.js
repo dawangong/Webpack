@@ -7,6 +7,8 @@ const devConfig = {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
+    // 页面展示eslint error
+    overlay: true,
     publicPath: '/',
     // contentBase: './dist',
     open: true,
