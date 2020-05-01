@@ -9,15 +9,17 @@
     "*.jpg"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev webpack-dev-server --config build/webpack.conf.dev.js",
-    "test": "cross-env NODE_ENV=test webpack-dev-server --config build/webpack.conf.dev.js",
-    "build": "npm_config_report=true cross-env NODE_ENV=prod webpack --config build/webpack.conf.prod.js",
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --config ./build/webpack.conf.dev.js",
+    "test": "cross-env NODE_ENV=test webpack-dev-server --config ./build/webpack.conf.dev.js",
+    "build": "npm_config_report=true cross-env NODE_ENV=prod webpack --config ./build/webpack.conf.prod.js",
+    "build:dll": "npm_config_report=true cross-env NODE_ENV=prod webpack --config ./build/webpack.conf.dll.js",
     "挂载env上": "--env.params for example: module.export=env => env.params",
     "挂载全局上": "--env params for example: module.export=params => params"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "add-asset-html-webpack-plugin": "^3.1.3",
     "autoprefixer": "^9.0.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",

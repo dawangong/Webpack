@@ -1,6 +1,8 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require("webpack");
+const addAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
 
 const { NODE_ENV } = process.env;
 
@@ -100,6 +102,14 @@ module.exports = {
     new cleanWebpackPlugin(['dist'], {
       // 指定root
       root: path.resolve(__dirname, '../')
+    }),
+    // html插入vendors
+    new addAssetHtmlWebpackPlugin({
+      filepath: path.resolve(__dirname, "../dll/vendors.dll.min.js")
+    }),
+    // dll寻找映射关系 （业务中引入时 就不会从node_modules中引入模块）
+    new webpack.DllReferencePlugin({
+      "manifest": path.resolve(__dirname, '../dll/vendors.manifest.json')
     })
   ],
   mode: env[NODE_ENV],
