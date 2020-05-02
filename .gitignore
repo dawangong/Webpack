@@ -1,7 +1,6 @@
 /node_modules
 /dist
 /package-lock.json
-/webpack4.x/node_modules
-webpack4.x/.idea/
-
+gulp/node_modules
+gulp/.idea/
 .idea/
