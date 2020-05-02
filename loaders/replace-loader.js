@@ -1,4 +1,5 @@
 module.exports = function (source) {
+  // 参数接收
   console.log(this.query);
 
   // cb params: error source sourceMap meta

@@ -3,6 +3,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require("webpack");
 const addAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
+const copyWebpackPlugin = require("../plugins/copy-webpack-plugin");
 
 const { NODE_ENV } = process.env;
 
@@ -113,6 +114,9 @@ module.exports = {
       // filename: "index.html",
       // 控制引入的js
       // chunks: ['']
+    }),
+    new copyWebpackPlugin({
+      type: 1
     }),
     new cleanWebpackPlugin(['dist'], {
       // 指定root
