@@ -17,6 +17,7 @@ const env = {
 module.exports = {
   //打包入口文件
   entry: {
+    // 参照点：文件根目录
     index: './src/index.js'
   },
   //打包后的目录
@@ -26,6 +27,11 @@ module.exports = {
     filename: 'src/[name].[hash].min.js',
     // 默认值 ./
     publicPath: './'
+  },
+  // 设置loader寻找目录
+  resolveLoader: {
+    // 参照点：文件根目录
+    modules: ['node_modules', 'loaders']
   },
   module: {
     rules: [
@@ -43,7 +49,12 @@ module.exports = {
       // babel-polyfill 兼容低版本浏览器不支持的api（4.0后 只安装 会自动引入） babel只转译语法 不转api
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: ['babel-loader', {
+          loader: 'replace-loader',
+          options: {
+            name: "name"
+          }
+        }],
         exclude: path.resolve(__dirname, '../node_modules'),
         include: path.resolve(__dirname, '../src')
       },
@@ -145,4 +156,4 @@ module.exports = {
   }
 };
 
-// clear plugin && output.path && loader 需要跟着目录重置位置
+// entry && resolveLoader 项目根目录起
