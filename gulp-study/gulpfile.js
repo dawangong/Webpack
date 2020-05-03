@@ -4,7 +4,7 @@ const { concat, rename, uglify, less, cleanCss, htmlmin, livereload, connect, ba
 
 /**
  * todo watch complete
- * todo ES6支持
+ * todo ES6支持 complete
  * todo esLint complete
  * todo dist 移除 complete
  */
@@ -31,7 +31,7 @@ gulp.task('js', () => {
   // .pipe(concat('index.js'))
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(babel())
+    .pipe(babel({ presets: ["@babel/env"] }))
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/'))
