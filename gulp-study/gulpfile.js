@@ -1,12 +1,6 @@
 const gulp = require("gulp");
-// const concat = require("gulp-concat");
-// const rename = require("gulp-rename");
-// const uglify = require("gulp-uglify");
-// const less = require("gulp-less");
-// const cleanCss = require("gulp-clean-css");
-// const htmlmin = require("gulp-htmlmin");
-// const livereload = require("gulp-livereload");
-// const connect = require("gulp-connect");
+// 自动引入 名字 = 末尾
+const { concat, rename, uglify, less, cleanCss, htmlmin, livereload, connect, babel, clean, eslint } = require("gulp-load-plugins")();
 
 /**
  * todo watch complete
@@ -14,10 +8,6 @@ const gulp = require("gulp");
  * todo esLint complete
  * todo dist 移除 complete
  */
-
-// 自动引入 名字 = 末尾
-
-const { concat, rename, uglify, less, cleanCss, htmlmin, livereload, connect, babel, clean, eslint } = require("gulp-load-plugins")();
 
 /*
  * pipe 每一步会拿到上一步
