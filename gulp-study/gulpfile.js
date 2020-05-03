@@ -25,34 +25,36 @@ const { concat, rename, uglify, less, cleanCss, htmlmin, livereload, connect } =
  * htmlmin 压缩html collapseWhitespace 压缩空格
  */
 
-gulp.task('js', () => gulp.src('./src/**/*.js')
+gulp.task('js', () => {
+  const jsTask = () => gulp.src('./src/**/*.js')
   // .pipe(concat('index.js'))
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/'))
-    .pipe(connect.reload())
-);
+    .pipe(connect.reload());
+  gulp.watch('./src/**/*.js', jsTask);
+  return jsTask();
+});
 
-gulp.task('less', () => gulp.src('./src/**/*.less')
-  .pipe(less())
-  // .pipe(concat('index.css'))
-  .pipe(cleanCss({ compatibility: 'ie8' }))
-  .pipe(gulp.dest('./dist/'))
-  .pipe(connect.reload())
-);
+gulp.task('less', () => {
+  const lessTask = () => gulp.src('./src/**/*.less')
+    .pipe(less())
+    // .pipe(concat('index.css'))
+    .pipe(cleanCss({ compatibility: 'ie8' }))
+    .pipe(gulp.dest('./dist/'))
+    .pipe(connect.reload());
+  gulp.watch('./src/**/*.less', lessTask);
+  return lessTask();
+  });
 
-gulp.task('html', () => gulp.src('./src/**/*.html')
-  .pipe(htmlmin({ collapseWhitespace: true }))
-  .pipe(gulp.dest('./dist/'))
-  .pipe(connect.reload())
-);
-
-// 监听文件 设置变动后执行的任务
-gulp.task('watch', () => gulp.parallel(
-  gulp.watch('./src/**/*.js', ['js']),
-  gulp.watch('./src/**/*.less', ['less']),
-  gulp.watch('./src/**/*.html',['html'])
-));
+gulp.task('html', () => {
+  const htmlTask = () => gulp.src('./src/**/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest('./dist/'))
+    .pipe(connect.reload());
+  gulp.watch('./src/**/*.html',htmlTask);
+  return htmlTask();
+});
 
 gulp.task('default', gulp.series(gulp.parallel(['js', 'less', 'html']), () => {
   connect.server({
