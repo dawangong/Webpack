@@ -8,9 +8,16 @@ const gulp = require("gulp");
 // const livereload = require("gulp-livereload");
 // const connect = require("gulp-connect");
 
-// todo watch、ES6
+/**
+ * todo watch complete
+ * todo ES6支持
+ * todo esLint complete
+ * todo dist 移除 complete
+ */
+
 // 自动引入 名字 = 末尾
-const { concat, rename, uglify, less, cleanCss, htmlmin, livereload, connect } = require("gulp-load-plugins")();
+
+const { concat, rename, uglify, less, cleanCss, htmlmin, livereload, connect, babel, clean, eslint } = require("gulp-load-plugins")();
 
 /*
  * pipe 每一步会拿到上一步
@@ -25,9 +32,16 @@ const { concat, rename, uglify, less, cleanCss, htmlmin, livereload, connect } =
  * htmlmin 压缩html collapseWhitespace 压缩空格
  */
 
+gulp.task('clean', () => gulp.src('./dist', {
+  allowEmpty: true
+}).pipe(clean()));
+
 gulp.task('js', () => {
   const jsTask = () => gulp.src('./src/**/*.js')
   // .pipe(concat('index.js'))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(babel())
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./dist/'))
@@ -56,7 +70,7 @@ gulp.task('html', () => {
   return htmlTask();
 });
 
-gulp.task('default', gulp.series(gulp.parallel(['js', 'less', 'html']), () => {
+gulp.task('default', gulp.series('clean', gulp.parallel(['js', 'less', 'html']), () => {
   connect.server({
     root: 'dist/',
     livereload: true,
