@@ -2,11 +2,19 @@ const gulp = require("gulp");
 // 自动引入 名字 = 末尾
 const { concat, rename, uglify, less, cleanCss, htmlmin, livereload, connect, babel, clean, eslint } = require("gulp-load-plugins")();
 
+// 支持require
+// const browserify = require('browserify');
+// // 转成stream流，gulp系
+// const stream = require('vinyl-source-stream');
+// // 转成二进制流，gulp系
+// const buffer = require('vinyl-buffer');
+
 /**
  * todo watch complete
  * todo ES6支持 complete
  * todo esLint complete
  * todo dist 移除 complete
+ * todo 模块化支持
  */
 
 /*
