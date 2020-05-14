@@ -1,6 +1,6 @@
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const commonConfig = require('./webpack.conf.common');
+const webpack = require("webpack");
+const merge = require("webpack-merge");
+const commonConfig = require("./webpack.conf.common");
 
 const devConfig = {
   plugins: [
@@ -9,20 +9,20 @@ const devConfig = {
   devServer: {
     // 页面展示eslint error
     overlay: true,
-    publicPath: '/',
-    // contentBase: './dist',
+    publicPath: "/",
+    // contentBase: "./dist",
     open: true,
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
+      "/api": {
+        target: "http://localhost:3000",
         // 跨域
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          "^/api": ""
         }
       }
     },
-    host: 'localhost',
+    host: "localhost",
     port: 8000,
     hot: true,
     compress: true

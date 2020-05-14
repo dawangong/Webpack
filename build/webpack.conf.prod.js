@@ -1,9 +1,9 @@
-const merge = require('webpack-merge');
-const commonConfig = require('./webpack.conf.common');
+const merge = require("webpack-merge");
+const commonConfig = require("./webpack.conf.common");
 // 分析打包
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); ？反而会变得更大？
-const WorkBoxWebpackPlugin = require('workbox-webpack-plugin');
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+// const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); ？反而会变得更大？
+const WorkBoxWebpackPlugin = require("workbox-webpack-plugin");
 
 
 const prodConfig = {

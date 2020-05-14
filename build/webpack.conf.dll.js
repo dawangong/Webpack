@@ -5,10 +5,10 @@ const webpack = require("webpack");
 module.exports = {
   mode: "production",
   entry: {
-    vendors: ['lodash']
+    vendors: ["lodash"]
   },
   output: {
-    path: path.resolve(__dirname, '../dll'),
+    path: path.resolve(__dirname, "../dll"),
     filename: "[name].dll.min.js",
     // 通过vendors暴露
     library: "[name]",
@@ -18,7 +18,7 @@ module.exports = {
     new webpack.DllPlugin({
       // 生成的库名 同 暴露的vendors变量名
       name: "[name]",
-      path: path.resolve(__dirname, '../dll/[name].manifest.json')
+      path: path.resolve(__dirname, "../dll/[name].manifest.json")
     })
   ]
 };
